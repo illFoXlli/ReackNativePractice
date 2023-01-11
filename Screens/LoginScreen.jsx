@@ -61,7 +61,9 @@ const LoginScreen = () => {
      resizeMode="cover"
      style={styles.image}
     >
-     <View style={{ ...styles.form, paddingBottom: !isShowKeyboard ? 78 : 32 }}>
+     <View
+      style={{ ...styles.form, paddingBottom: !isShowKeyboard ? 110 : 32 }}
+     >
       <KeyboardAvoidingView
        behavior={Platform.OS === "ios" ? "padding" : "height"}
        style={styles.containerRegistrationScreen}
@@ -80,20 +82,12 @@ const LoginScreen = () => {
           onFocus={() => setIsShowKeyboard(true)}
          />
         </View>
-        {/* <View style={styles.ViewMailInput}>
-         <TextInput
-          style={styles.input}
-          //   value={textMail}
-          placeholder="Адрес электронной почты"
-          placeholderTextColor="#BDBDBD"
-          keyboardType="email-address"
-          onFocus={() => setIsShowKeyboard(true)}
-          onChangeText={(value) =>
-           setState((prevState) => ({ ...prevState, email: value }))
-          }
-         />
-        </View> */}
-        <View style={styles.ViewPassInput}>
+        <View
+         style={{
+          ...styles.ViewPassInput,
+          marginBottom: !isShowKeyboard ? 43 : 0,
+         }}
+        >
          <TextInput
           style={styles.input}
           //   value={pass}
@@ -114,24 +108,27 @@ const LoginScreen = () => {
           <Text style={styles.buttonShow}>Показать</Text>
          </TouchableOpacity>
         </View>
-
+        {!isShowKeyboard ? (
+         <TouchableOpacity
+          style={styles.button}
+          onPress={keyboarHide}
+          activeOpacity={0.7}
+         >
+          <Text style={styles.buttonText}>Войти</Text>
+         </TouchableOpacity>
+        ) : null}
+       </SafeAreaView>
+       {!isShowKeyboard ? (
         <TouchableOpacity
-         style={styles.button}
+         style={styles.buttonComeIn}
          onPress={keyboarHide}
          activeOpacity={0.7}
         >
-         <Text style={styles.buttonText}>Войти</Text>
+         <Text style={styles.buttonTextComeIn}>
+          Нет аккаунта? Зарегистрироваться
+         </Text>
         </TouchableOpacity>
-       </SafeAreaView>
-       <TouchableOpacity
-        style={styles.buttonComeIn}
-        onPress={keyboarHide}
-        activeOpacity={0.7}
-       >
-        <Text style={styles.buttonTextComeIn}>
-         Нет аккаунта? Зарегистрироваться
-        </Text>
-       </TouchableOpacity>
+       ) : null}
       </KeyboardAvoidingView>
      </View>
     </ImageBackground>
@@ -156,7 +153,7 @@ const styles = StyleSheet.create({
   borderTopRightRadius: 25,
  },
  text: {
-  fontFamily: "Roboto-Regular",
+  fontFamily: "Roboto-Medium",
   fontStyle: "normal",
   fontWeight: "500",
   fontSize: 35,
@@ -188,7 +185,7 @@ const styles = StyleSheet.create({
  },
  ViewPassInput: {
   position: "relative",
-  marginBottom: 43,
+  //   marginBottom: 43,
   marginLeft: 16,
   marginRight: 16,
  },

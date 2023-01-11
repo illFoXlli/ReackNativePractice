@@ -9,8 +9,8 @@ export default function App() {
  if (!isLoadingComplete) {
   return null;
  }
- // return <RegistrationScreen />;
- return <LoginScreen />;
+ return <RegistrationScreen />;
+ //  return <LoginScreen />;
 }
 
 const styles = StyleSheet.create({
