@@ -1,36 +1,16 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native";
+import useCachedResources from "./helpers/useCachedResources.js";
+import LoginScreen from "./Screens/LoginScreen.jsx";
 import RegistrationScreen from "./Screens/RegistrationScreen.jsx";
-import { InputHandler } from "./src/components/InputHandler/InputHandler.jsx";
-
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from "react";
-
-// SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+ const isLoadingComplete = useCachedResources();
 
-    
-    //   const onLayoutRootView = useCallback(async () => {
-    //     if (fontsLoaded) {
-    //       await SplashScreen.hideAsync();
-    //     }
-    //   }, [fontsLoaded]);
-    
-    //   if (!fontsLoaded) {
-    //     return null;
-    //   }
- return (
-    // onLayout={onLayoutRootView}
-    <RegistrationScreen />
-//   <View style={styles.container}>
-//    <Text style={styles.title}>Hello Masha!</Text>
-//    <InputHandler />
-//    <StatusBar style="auto" />
-//   </View>
- );
+ if (!isLoadingComplete) {
+  return null;
+ }
+ // return <RegistrationScreen />;
+ return <LoginScreen />;
 }
 
 const styles = StyleSheet.create({
